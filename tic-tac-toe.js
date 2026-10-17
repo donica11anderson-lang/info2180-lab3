@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (gameState[a] !== "" && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
         status.textContent = "Congratulations! " + gameState[a] + " is the Winner!";
         status.classList.add("you-won");
+        gameOver = true;
       }
     }
   }
@@ -29,6 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
     square.classList.add("square");
 
     square.addEventListener("click", function () {
+        if (gameState[index] !== "" || gameOver) {
+            return;
+      }
       gameState[index] = currentPlayer;
       square.textContent = currentPlayer;
       square.classList.add(currentPlayer);
